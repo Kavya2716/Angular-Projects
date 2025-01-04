@@ -1,0 +1,36 @@
+<div style="display: flex; justify-content: center;">
+    <h1>To Do List</h1>
+</div>
+<div style="margin-top: 20px;margin-left: 14px;">
+    <input  class="form-group" type="text" #todoText placeholder="Add Todo">
+    <button style="margin-left: 10px;" class="btn btn-info" (click)="addTask(todoText.value)">Add</button>
+</div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Task</th>
+        <th scope="col">Completed</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todoItem of todoList" style="border: 1px solid black;">
+            <td>{{ todoItem.id }}</td>
+            <td>{{ todoItem.task }}</td>
+            <td>
+                <input
+                class="form-group"
+                    type="checkbox"
+                    [(checked)]="todoItem.completed"
+                    (change)="toggleCompleted(todoItem.id)"
+                />
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteTask(todoItem.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
